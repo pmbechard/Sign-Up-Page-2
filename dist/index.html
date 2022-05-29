@@ -13,7 +13,13 @@
       <form action="#" novalidate>
         <p>
           <label for="name">Name</label>
-          <input type="text" id="name" required placeholder="Jane Doe" />
+          <input
+            type="text"
+            id="name"
+            required
+            placeholder="Jane Doe"
+            minlength="1"
+          />
         </p>
         <p>
           <label for="email">Email</label>
@@ -32,7 +38,7 @@
             id="postal-code"
             required
             placeholder="A1A 1A1"
-            pattern="'/^[a-zA-z]\d[a-zA-z]\s?\d[a-zA-z]\d$/'"
+            pattern="([a-zA-z]\d[a-zA-z]\s?\d[a-zA-z]\d)|(\d{5}([\-]\d{4})?)"
           />
         </p>
         <p>
@@ -43,6 +49,9 @@
             id="country"
             list="countries"
             value="Canada"
+            pattern="([Uu][Ss][Aa])|([Cc]anada)"
+            minlength="3"
+            required
           />
           <datalist id="countries">
             <option>Canada</option>
@@ -57,7 +66,8 @@
             id="pwd"
             required
             placeholder="******"
-            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+            pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+            minlength="6"
           />
         </p>
         <p>
@@ -68,6 +78,8 @@
             id="confirm-pwd"
             required
             placeholder="******"
+            pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+            minlength="6"
           />
         </p>
         <p>

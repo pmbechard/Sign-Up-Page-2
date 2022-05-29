@@ -1,6 +1,5 @@
 import './style.css';
 
-const form = document.getElementsByTagName('form');
 const name = document.getElementById('name');
 const email = document.getElementById('email');
 const postalCode = document.getElementById('postal-code');
@@ -9,7 +8,20 @@ const pwd = document.getElementById('pwd');
 const confirmPwd = document.getElementById('confirm-pwd');
 const agree = document.getElementById('agree');
 
-const CAN_POSTAL_CODE = '/^[a-zA-z]\d[a-zA-z]\s?\d[a-zA-z]\d$/';
-const US_POSTAL_CODE = '/(\d{5}([\-]\d{4})?)/';
+const fieldsToValidate = [name, email, postalCode, country, pwd, confirmPwd];
 
-form.addEventListener('submit', () => {});
+// PWD: Password (UpperCase, LowerCase, Number/SpecialChar and min 8 Chars)
+
+fieldsToValidate.forEach((field) => {
+  field.addEventListener('input', () => {
+    field.validity.valid ? showValid(field) : showInvalid(field);
+  });
+});
+
+function showValid(element) {
+  element.style.backgroundColor = 'rgb(155, 255, 155)';
+}
+
+function showInvalid(element) {
+  element.style.backgroundColor = 'rgb(255, 155, 155)';
+}
