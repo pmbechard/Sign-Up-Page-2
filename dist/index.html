@@ -27,7 +27,13 @@
         </p>
         <p>
           <label for="postal-code">Postal Code</label>
-          <input type="text" id="postal-code" required placeholder="A1A 1A1" />
+          <input
+            type="text"
+            id="postal-code"
+            required
+            placeholder="A1A 1A1"
+            pattern="'/^[a-zA-z]\d[a-zA-z]\s?\d[a-zA-z]\d$/'"
+          />
         </p>
         <p>
           <label for="country">Country</label>
@@ -51,6 +57,7 @@
             id="pwd"
             required
             placeholder="******"
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
           />
         </p>
         <p>
@@ -70,7 +77,7 @@
           >
         </p>
         <p class="button-container">
-          <button>Submit</button>
+          <button id="submit">Submit</button>
         </p>
       </form>
     </div>
