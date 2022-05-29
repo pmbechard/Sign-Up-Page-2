@@ -19,9 +19,30 @@ fieldsToValidate.forEach((field) => {
 });
 
 function showValid(element) {
-  element.style.backgroundColor = 'rgb(155, 255, 155)';
+  element.style.border = '1px solid green';
+  element.style.borderLeft = '5px solid green';
+  if (element.parentNode.lastElementChild.classList.contains('invalid')) {
+    element.parentNode.lastElementChild.remove();
+  }
+  if (element === element.parentNode.lastElementChild) {
+    const valid = document.createElement('span');
+    valid.innerHTML = '&check;';
+    valid.classList.add('valid');
+    element.parentNode.insertBefore(valid, element.nextSibling);
+  }
 }
 
 function showInvalid(element) {
-  element.style.backgroundColor = 'rgb(255, 155, 155)';
+  element.style.border = '1px solid #900';
+  element.style.borderLeft = '5px solid #900';
+  if (element !== element.parentNode.lastElementChild) {
+    element.parentNode.lastElementChild.remove();
+  }
+
+  if (element === element.parentNode.lastElementChild) {
+    const invalid = document.createElement('span');
+    invalid.innerHTML = 'X';
+    invalid.classList.add('invalid');
+    element.parentNode.insertBefore(invalid, element.nextSibling);
+  }
 }
