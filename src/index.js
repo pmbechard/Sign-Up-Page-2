@@ -29,9 +29,6 @@ fieldsToValidate.forEach((field) => {
         : showInvalid(field);
     });
   } else if (field === country) {
-    field.addEventListener('input', () => {
-      field.validity.valid ? showValid(field) : showInvalid(field);
-    });
     showValid(field);
   } else {
     field.addEventListener('input', () => {
