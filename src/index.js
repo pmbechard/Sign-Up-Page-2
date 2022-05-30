@@ -1,5 +1,3 @@
-// TODO: Display custom error messages
-
 import './style.css';
 
 const form = document.getElementsByTagName('form')[0];
@@ -24,14 +22,17 @@ const fieldsToValidate = [
 fieldsToValidate.forEach((field) => {
   if (field === confirmPwd) {
     field.addEventListener('input', () => {
+      field.setCustomValidity('');
       field.validity.valid && field.value === pwd.value
         ? showValid(field)
         : showInvalid(field);
     });
   } else if (field === country) {
+    field.setCustomValidity('');
     showValid(field);
   } else {
     field.addEventListener('input', () => {
+      field.setCustomValidity('');
       field.validity.valid ? showValid(field) : showInvalid(field);
     });
   }
@@ -67,4 +68,29 @@ function showInvalid(element) {
 
 form.addEventListener('submit', (event) => {
   // if any field is invalid, display custom instructions underneath field
+  if (!name.validity.valid) {
+    name.setCustomValidity('Please enter a valid name.');
+    name.reportValidity();
+  } else if (!email.validity.valid) {
+    email.setCustomValidity('Please enter a valid email address.');
+    email.reportValidity();
+  } else if (!postalCode.validity.valid) {
+    postalCode.setCustomValidity(
+      'Please enter a valid postal code (ie, A1A 1A1 or ##### or #####-####).'
+    );
+    postalCode.reportValidity();
+  } else if (!pwd.validity.valid) {
+    pwd.setCustomValidity(
+      'Must be 8 characters with uppercase, lowercase, and number or special character.'
+    );
+    pwd.reportValidity();
+  } else if (confirmPwd.value !== pwd.value) {
+    confirmPwd.setCustomValidity('Passwords must match.');
+    confirmPwd.reportValidity();
+  } else if (!agree.checked) {
+    agree.setCustomValidity(
+      "Please confirm that you've read and agree to the Terms & Conditions"
+    );
+    agree.reportValidity();
+  }
 });
