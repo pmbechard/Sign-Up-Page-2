@@ -43,20 +43,15 @@
         </p>
         <p>
           <label for="country">Country</label>
-          <input
-            type="text"
+          </datalist>
+          <select
             name="country"
             id="country"
-            list="countries"
-            value="Canada"
-            pattern="([Uu][Ss][Aa])|([Cc]anada)"
-            minlength="3"
             required
-          />
-          <datalist id="countries">
-            <option>Canada</option>
+          >
+            <option selected>Canada</option>
             <option>USA</option>
-          </datalist>
+          </select>
         </p>
         <p>
           <!-- PWD: Password (UpperCase, LowerCase, Number/SpecialChar and min 8 Chars) -->

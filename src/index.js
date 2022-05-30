@@ -2,6 +2,7 @@
 
 import './style.css';
 
+const form = document.getElementsByTagName('form')[0];
 const name = document.getElementById('name');
 const email = document.getElementById('email');
 const postalCode = document.getElementById('postal-code');
@@ -10,7 +11,15 @@ const pwd = document.getElementById('pwd');
 const confirmPwd = document.getElementById('confirm-pwd');
 const agree = document.getElementById('agree');
 
-const fieldsToValidate = [name, email, postalCode, country, pwd, confirmPwd];
+const fieldsToValidate = [
+  name,
+  email,
+  postalCode,
+  country,
+  pwd,
+  confirmPwd,
+  agree,
+];
 
 fieldsToValidate.forEach((field) => {
   if (field === confirmPwd) {
@@ -19,6 +28,11 @@ fieldsToValidate.forEach((field) => {
         ? showValid(field)
         : showInvalid(field);
     });
+  } else if (field === country) {
+    field.addEventListener('input', () => {
+      field.validity.valid ? showValid(field) : showInvalid(field);
+    });
+    showValid(field);
   } else {
     field.addEventListener('input', () => {
       field.validity.valid ? showValid(field) : showInvalid(field);
@@ -46,7 +60,6 @@ function showInvalid(element) {
   if (element !== element.parentNode.lastElementChild) {
     element.parentNode.lastElementChild.remove();
   }
-
   if (element === element.parentNode.lastElementChild) {
     const invalid = document.createElement('span');
     invalid.innerHTML = 'X';
@@ -54,3 +67,7 @@ function showInvalid(element) {
     element.parentNode.insertBefore(invalid, element.nextSibling);
   }
 }
+
+form.addEventListener('submit', (event) => {
+  // if any field is invalid, display custom instructions underneath field
+});

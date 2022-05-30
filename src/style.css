@@ -72,6 +72,7 @@ form > p > button {
 form > p > button:hover {
   opacity: 0.8;
   transform: scale(1.02);
+  cursor: pointer;
 }
 
 form > p > button:active {
@@ -81,7 +82,8 @@ form > p > button:active {
 
 form > p > input[type='text'],
 form > p > input[type='password'],
-form > p > input[type='email'] {
+form > p > input[type='email'],
+select {
   width: 250px;
   height: 30px;
   border: 1px solid #333;
