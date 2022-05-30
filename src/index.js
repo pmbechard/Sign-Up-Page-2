@@ -1,3 +1,5 @@
+// TODO: Display custom error messages
+
 import './style.css';
 
 const name = document.getElementById('name');
@@ -10,12 +12,18 @@ const agree = document.getElementById('agree');
 
 const fieldsToValidate = [name, email, postalCode, country, pwd, confirmPwd];
 
-// PWD: Password (UpperCase, LowerCase, Number/SpecialChar and min 8 Chars)
-
 fieldsToValidate.forEach((field) => {
-  field.addEventListener('input', () => {
-    field.validity.valid ? showValid(field) : showInvalid(field);
-  });
+  if (field === confirmPwd) {
+    field.addEventListener('input', () => {
+      field.validity.valid && field.value === pwd.value
+        ? showValid(field)
+        : showInvalid(field);
+    });
+  } else {
+    field.addEventListener('input', () => {
+      field.validity.valid ? showValid(field) : showInvalid(field);
+    });
+  }
 });
 
 function showValid(element) {
